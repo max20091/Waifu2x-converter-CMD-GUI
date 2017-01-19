@@ -6,15 +6,17 @@ set NoiseLevel=1
 :MainMenu
 cls
 title Waifu2x simple GUI by max20091
+If not exist "waifu2x-converter-cpp.exe" echo waifu2x-converter-cpp not found! Please check again if you put this at right place.
 echo scale factor: %ScaleFactor%x
 echo Model directory: %ModelDir%
 echo Noise level: %NoiseLevel%
-cmdmenusel f8%f0 "Run" "Change scale factor" "Change noise level" "Change Model Directory" "Exit"
+cmdmenusel f8%f0 "Run" "Change scale factor" "Change noise level" "Change Model Directory" "Convert to PNG" "Exit"
 if %ERRORLEVEL% == 1 goto Scale
 if %ERRORLEVEL% == 2 goto ChangeScaleFactor
 if %ERRORLEVEL% == 3 goto ChangeNoiseLevel
 if %ERRORLEVEL% == 4 goto ChangeModelDir
-if %ERRORLEVEL% == 5 exit
+if %ERRORLEVEL% == 5 goto ConvertToPNG
+if %ERRORLEVEL% == 6 exit
 :MainMenuCompleted
 title Waifu2x simple GUI by max20091
 cls
@@ -22,12 +24,13 @@ echo Completed!
 echo scale factor: %ScaleFactor%
 echo Model directory: %ModelDir%
 echo Noise level: %NoiselLevel%
-cmdmenusel f8%f0 "Run" "Change scale factor" "Change noise level" "Change Model Directory" "Exit"
+cmdmenusel f8%f0 "Run" "Change scale factor" "Change noise level" "Change Model Directory" "Convert to PNG" "Exit"
 if %ERRORLEVEL% == 1 goto Scale
 if %ERRORLEVEL% == 2 goto ChangeScaleFactor
 if %ERRORLEVEL% == 3 goto ChangeNoiseLevel
 if %ERRORLEVEL% == 4 goto ChangeModelDir
-if %ERRORLEVEL% == 5 exit
+if %ERRORLEVEL% == 5 goto ConvertToPNG
+if %ERRORLEVEL% == 6 exit
 
 :ChangeScaleFactor
 title Change scale factor
@@ -49,6 +52,10 @@ if %ERRORLEVEL% == 2 set NoiseLevel=2
 if %ERRORLEVEL% == 3 set NoiseLevel=3
 if %ERRORLEVEL% == 4 goto MainMenu
 goto MainMenu
+
+:ConvertToPNG
+FOR /f "delims=" %%a IN ('dir /b input\*.*') DO call waifu2x-converter-cpp.exe --scale_ratio 1 --model_dir %ModelDir% -m scale "input\%%a" -o "output\%%~na.png"
+goto MainMenuCompleted
 
 :ChangeModelDir
 title Change model directory
