@@ -1,5 +1,6 @@
 # Waifu2x-converter-GUI
 A simple GUI writeen in batch! Only for Windows!
+Abandoned due to cmd.exe limitation (cmd does not support unicode by default)
 
 ## Download link
 https://github.com/max20091/Waifu2x-converter-GUI/releases
