@@ -54,7 +54,7 @@ if %ERRORLEVEL% == 4 goto MainMenu
 goto MainMenu
 
 :ConvertToPNG
-FOR /f "delims=" %%a IN ('dir /b input\*.*') DO call waifu2x-converter-cpp.exe --scale_ratio 1 --model_dir %ModelDir% -m scale "input\%%a" -o "output\%%~na.png"
+FOR /f "delims=" %%a IN ('dir /b input\*.*') DO call waifu2x-converter-cpp.exe --scale_ratio 1 --model_dir %ModelDir% -m scale -i "input\%%a" -o "output\%%~na.png"
 goto MainMenuCompleted
 
 :ChangeModelDir
