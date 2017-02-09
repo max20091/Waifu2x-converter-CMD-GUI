@@ -1,6 +1,6 @@
 @echo off
 set ScaleFactor=2
-Set ModelDir=\models_rgb
+Set ModelDir=models_rgb\
 set NoiseLevel=1
 
 :MainMenu
@@ -60,7 +60,7 @@ goto MainMenuCompleted
 :ChangeModelDir
 title Change model directory
 cls
-set /p ModelDir=Put your model directory name to here (Default is \models_rgb): 
+set /p ModelDir=Put your model directory name to here (Default is models_rgb\): 
 goto MainMenu
 
 :scale
