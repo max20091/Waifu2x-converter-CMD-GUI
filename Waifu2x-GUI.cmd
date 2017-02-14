@@ -58,7 +58,7 @@ if %ERRORLEVEL% == 1 set NoiseLevel=0
 if %ERRORLEVEL% == 2 set NoiseLevel=1
 if %ERRORLEVEL% == 3 set NoiseLevel=2
 if %ERRORLEVEL% == 4 set NoiseLevel=3
-if %ERRORLEVEL% == 4 goto MainMenu
+if %ERRORLEVEL% == 5 goto MainMenu
 goto MainMenu
 
 :ChangeBlockSize
